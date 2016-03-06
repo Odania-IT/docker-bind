@@ -3,7 +3,7 @@ MAINTAINER Mike Petersen <mike@odania-it.de>
 
 RUN apt-get update && apt-get install -y bind9 dnsutils
 
-# Setup haproxy with supervisord
+# Setup service
 RUN mkdir -p /etc/service/bind
 COPY runit/bind.sh /etc/service/bind/run
 
