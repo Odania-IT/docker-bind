@@ -3,7 +3,7 @@ services:
   bind:
     build: .
     ports:
-      - "5353:53/udp"
+      - "53:53/udp"
     volumes:
       - ./data:/srv/data
       - .:/srv/bind
