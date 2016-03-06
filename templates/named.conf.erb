@@ -16,6 +16,7 @@ acl slaves {
 zone "<%= domain %>" {
   <% if is_master %>
 	type master;
+	notify yes;
 	allow-transfer { slaves; };
 	<% else %>
 	type slave;
