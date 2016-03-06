@@ -1,0 +1,19 @@
+//
+// This template is generated!!!
+// Changes will be overwritten!!!
+//
+
+acl slaves {
+  <% config['nameservers'].each do |data| %>
+	<%= data['ip'] %>/32; // <%= data['name'] %>
+	<% end %>
+};
+
+<% config['domains'].each_pair do |domain, data| %>
+zone "<%= domain %>" {
+	type master;
+	file "/etc/bind/zones/<%= domain %>.hosts";
+	allow-transfer { slaves; };
+};
+
+<% end %>

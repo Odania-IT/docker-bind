@@ -1,0 +1,44 @@
+$TTL 3600
+@   IN SOA ns1.odania-it.com. postmaster.odania-it.com. (
+    <%= Time.now.to_i %>   ; serial
+    14400        ; refresh after 4 hours
+    1800         ; retry after 30 minutes
+    604800       ; expire after 1 week
+    86400 )      ; minimum TTL of 1 day
+
+<% global_config['nameservers'].each do |data| %>
+@                        IN NS      <%= data['name'] %>.
+<% end %>
+
+@                        IN A       <%= config['ip'] %>
+*                        IN A       <%= config['ip'] %>
+www                      IN A       <%= config['ip'] %>
+localhost                IN A       127.0.0.1
+
+; subdomains
+<% unless config['subdomains'].nil? %>
+<% config['subdomains'].each_pair do |name, ip| %>
+<%= name.ljust(25, ' ') %>IN A       <%= ip %>
+<% end %>
+<% end %>
+
+; default subdomains
+<% global_config['default_subdomains'].each_pair do |name, ip| %>
+<%= name.ljust(25, ' ') %>IN A       <%= ip %>
+<% end %>
+
+; cnames
+ftp                      IN CNAME   www
+imap                     IN CNAME   www
+loopback                 IN CNAME   localhost
+pop                      IN CNAME   www
+relay                    IN CNAME   www
+smtp                     IN CNAME   www
+@                        IN MX 10   mail
+
+; TXT
+<% unless config['txt'].nil? %>
+<% config['txt'].each do |data| %>
+<%= data['key'].ljust(25, ' ') %>IN TXT       <%= data['value'] %>
+<% end %>
+<% end %>

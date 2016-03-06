@@ -1,0 +1,11 @@
+version: '2'
+services:
+  bind:
+    build: .
+    ports:
+      - "5353:53"
+    volumes:
+      - ./data:/srv/data
+      - .:/srv/bind
+    tty: true
+    stdin_open: true
