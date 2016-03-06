@@ -3,17 +3,25 @@
 // Changes will be overwritten!!!
 //
 
+<% if is_master %>
 acl slaves {
-  <% config['nameservers'].each do |data| %>
+  <% config['nameservers'].each do |data|
+    next if 'master'.eql? data['type'] %>
 	<%= data['ip'] %>/32; // <%= data['name'] %>
 	<% end %>
 };
+<% end %>
 
 <% config['domains'].each_pair do |domain, data| %>
 zone "<%= domain %>" {
+  <% if is_master %>
 	type master;
-	file "/etc/bind/zones/<%= domain %>.hosts";
 	allow-transfer { slaves; };
+	<% else %>
+	type slave;
+	masters { <%= get_master %>; };
+	<% end %>
+	file "/etc/bind/zones/<%= domain %>.hosts";
 };
 
 <% end %>
