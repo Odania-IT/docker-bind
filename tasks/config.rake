@@ -1,8 +1,8 @@
 namespace :config do
 	desc 'Generate zone files'
 	task :generate do
-		config_dir = ENV['CONFIG_DIR'].nil? ? File.join(BASE_DIR, 'data', 'config') : ENV['CONFIG_DIR']
-		bind_dir = ENV['BIND_DIR'].nil? ? File.join(BASE_DIR, 'data', 'etc') : ENV['BIND_DIR']
+		config_dir = ENV['CONFIG_DIR'].nil? ? '/srv/data/config' : ENV['CONFIG_DIR']
+		bind_dir = ENV['BIND_DIR'].nil? ? '/srv/data/etc' : ENV['BIND_DIR']
 
 		puts "Loading configuration from #{config_dir}"
 		config = YAML.load_file File.join(config_dir, 'main.yml')
