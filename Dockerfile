@@ -15,7 +15,7 @@ RUN mkdir -p /srv/data && chown -R bind:bind /srv/data
 
 ENV COPY_REFERENCE_FILE_LOG /srv/data/copy_reference_file.log
 VOLUME '/srv/data' '/srv/bind'
-EXPOSE 53
+EXPOSE 53/udp 53/tcp
 
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
