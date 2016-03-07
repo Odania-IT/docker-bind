@@ -34,4 +34,4 @@ cd /srv/bind && rake config:generate
 chown -R bind:bind ${DATA_DIR}
 chown -R bind:bind ${LIB_DIR}
 
-exec chpst -ubind /usr/sbin/named -g
+exec /usr/sbin/named -g
