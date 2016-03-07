@@ -31,5 +31,7 @@ rm -rf /var/lib/bind
 ln -sf ${LIB_DIR} /var/lib/bind
 
 cd /srv/bind && rake config:generate
+chown -R bind:bind ${DATA_DIR}
+chown -R bind:bind ${LIB_DIR}
 
-exec /usr/sbin/named -g
+exec chpst -ubind /usr/sbin/named -g
