@@ -4,10 +4,10 @@
 //
 
 <% if is_master %>
-acl slaves {
+acl "slaves" {
   <% config['nameservers'].each do |data|
     next if 'master'.eql? data['type'] %>
-	<%= data['ip'] %>/32; // <%= data['name'] %>
+	<%= data['ip'] %>; // <%= data['name'] %>
 	<% end %>
 };
 <% end %>
@@ -17,7 +17,7 @@ zone "<%= domain %>" {
   <% if is_master %>
 	type master;
 	notify yes;
-	allow-transfer { slaves; };
+	allow-transfer { "slaves"; };
 	<% else %>
 	type slave;
 	masters { <%= get_master %>; };
