@@ -28,13 +28,26 @@ localhost                IN A       127.0.0.1
 <% end %>
 
 ; cnames
+<% unless config['cnames'].nil? %>
+<% config['cnames'].each_pair do |cname, target| %>
+<%= cname.ljust(25, ' ') %>IN CNAME   <%= target %>
+<% end %>
+<% end %>
 ftp                      IN CNAME   www
 imap                     IN CNAME   www
 loopback                 IN CNAME   localhost
 pop                      IN CNAME   www
 relay                    IN CNAME   www
 smtp                     IN CNAME   www
+
+; mx
+<% if config['mx'].nil? %>
 @                        IN MX 10   mail
+<% else %>
+<% config['mx'].each do |target| %>
+<%= '@'.ljust(25, ' ') %>IN MX 10   <%= target %>
+<% end %>
+<% end %>
 
 ; TXT
 <% unless config['txt'].nil? %>
