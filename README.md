@@ -46,6 +46,26 @@ rake config:generate
 
 to generate the named.conf.local file and the zone files for your configuration. A reload is triggered on the bind server.
 
-## Developers
+## Testing
+
+To test the response from a nameserver dig can be used:
+
+```
+dig @NAMESERVER DOMAIN
+
+e.g.: dig @ns.example.com example.com
+```
+
+To test the transfer from a slave, you can use the command:
+
+```
+dig @NAMESERVER DOMAIN axfr
+
+e.g.: dig @ns.example.com example.com axfr
+```
+
+You need to be on a slave that is allowed to request the transfer data.
+
+## Contributors
 
 - Mike Petersen

@@ -39,6 +39,6 @@ smtp                     IN CNAME   www
 ; TXT
 <% unless config['txt'].nil? %>
 <% config['txt'].each do |data| %>
-<%= data['key'].ljust(25, ' ') %>IN TXT       <%= data['value'] %>
+<%= data['key'].ljust(25, ' ') %>IN TXT     <%= data['value'] %>
 <% end %>
 <% end %>
