@@ -9,6 +9,7 @@ acl slaves {
     next if 'master'.eql? data['type'] %>
 	<%= data['ip'] %>; // <%= data['name'] %>
 	<% end %>
+  172.17.0.1; // docker ip is not transmitted correctly
 };
 <% end %>
 
