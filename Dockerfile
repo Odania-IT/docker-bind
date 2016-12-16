@@ -12,6 +12,7 @@ WORKDIR /srv/bind
 RUN bundle install
 
 RUN mkdir -p /srv/data && chown -R bind:bind /srv/data
+COPY templates/named.conf.options /etc/bind/named.conf.options
 
 ENV COPY_REFERENCE_FILE_LOG /srv/data/copy_reference_file.log
 VOLUME '/srv/data' '/srv/bind'
