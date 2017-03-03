@@ -26,7 +26,7 @@ zone "<%= domain %>" {
 	file "/etc/bind/zones/<%= domain %>.hosts";
 };
 
-<% end %>
+<% end unless config['domains'].nil? %>
 
 <% config['grouped_domains'].each do |group_data| %>
 <% group_data['domains'].each do |domain| %>
@@ -43,4 +43,4 @@ zone "<%= domain %>" {
 };
 
 <% end %>
-<% end %>
+<% end unless config['grouped_domains'].nil? %>
