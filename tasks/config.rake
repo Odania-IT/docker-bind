@@ -20,7 +20,7 @@ namespace :config do
 				puts "Generating hosts file for #{domain}"
 				template = ZoneTemplate.new domain, data, config
 				template.write bind_dir
-			end
+			end unless config['domains'].nil?
 
 			config['grouped_domains'].each do |group_data|
 				group_data['domains'].each do |domain|
@@ -28,7 +28,7 @@ namespace :config do
 					template = ZoneTemplate.new domain, {'ip' => group_data['ip']}, config
 					template.write bind_dir
 				end
-			end
+			end unless config['grouped_domains'].nil?
 		end
 
 		puts 'Reloading configuration'
