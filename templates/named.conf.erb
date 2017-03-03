@@ -27,3 +27,20 @@ zone "<%= domain %>" {
 };
 
 <% end %>
+
+<% config['grouped_domains'].each do |group_data| %>
+<% group_data['domains'].each do |domain| %>
+zone "<%= domain %>" {
+  <% if is_master %>
+	type master;
+	notify yes;
+	allow-transfer { slaves; };
+	<% else %>
+	type slave;
+	masters { <%= get_master %>; };
+	<% end %>
+	file "/etc/bind/zones/<%= domain %>.hosts";
+};
+
+<% end %>
+<% end %>
