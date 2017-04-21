@@ -4,7 +4,7 @@ class NamedTemplate
 	def initialize(config, is_master)
 		self.is_master = is_master
 		self.config = config
-		self.template = File.new(File.join(BASE_DIR, 'templates', 'named.conf.erb')).read
+		self.template = File.new(File.join(BASE_DIR, 'templates', 'named.conf.local.erb')).read
 	end
 
 	def render

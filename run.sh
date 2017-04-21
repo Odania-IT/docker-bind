@@ -2,7 +2,6 @@
 
 # Prepare data directory
 DATA_DIR=/srv/data/etc
-LIB_DIR=/srv/data/lib
 
 # Copy files from /opt/openhab2/conf-default into /opt/openhab2/conf
 # So the initial OPENHAB-HOME is set with expected content.
@@ -23,15 +22,11 @@ copy_reference_file() {
 export -f copy_reference_file
 echo "--- Copying files at $(date)" >> $COPY_REFERENCE_FILE_LOG
 find /etc/bind -type f -exec bash -c "copy_reference_file '{}' ${DATA_DIR} '/etc/bind'" \;
-find /var/lib/bind -type f -exec bash -c "copy_reference_file '{}' ${LIB_DIR} '/var/lib/bind'" \;
 
 rm -rf /etc/bind
 ln -sf ${DATA_DIR} /etc/bind
-rm -rf /var/lib/bind
-ln -sf ${LIB_DIR} /var/lib/bind
 
 cd /srv/bind && rake config:generate
-chown -R bind:bind ${DATA_DIR}
-chown -R bind:bind ${LIB_DIR}
+chown -R named:named ${DATA_DIR}
 
 exec /usr/sbin/named -g
