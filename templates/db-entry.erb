@@ -7,51 +7,51 @@ $TTL 3600
     86400 )      ; minimum TTL of 1 day
 
 <% global_config['nameservers'].each do |data| %>
-@                        IN NS      <%= data['name'] %>.
+@                         IN NS      <%= data['name'] %>.
 <% end %>
 
-@                        IN A       <%= config['ip'] %>
-*                        IN A       <%= config['ip'] %>
-www                      IN A       <%= config['ip'] %>
-localhost                IN A       127.0.0.1
+@                              IN A       <%= config['ip'] %>
+*                              IN A       <%= config['ip'] %>
+www                            IN A       <%= config['ip'] %>
+localhost                      IN A       127.0.0.1
 
 ; subdomains
 <% unless config['subdomains'].nil? %>
 <% config['subdomains'].each_pair do |name, ip| %>
-<%= name.ljust(25, ' ') %>IN A       <%= ip %>
+<%= name.ljust(30, ' ') %> IN A       <%= ip %>
 <% end %>
 <% end %>
 
 ; default subdomains
 <% global_config['default_subdomains'].each_pair do |name, ip| %>
-<%= name.ljust(25, ' ') %>IN A       <%= ip %>
+<%= name.ljust(30, ' ') %> IN A       <%= ip %>
 <% end %>
 
 ; cnames
 <% unless config['cnames'].nil? %>
 <% config['cnames'].each_pair do |cname, target| %>
-<%= cname.ljust(25, ' ') %>IN CNAME   <%= target %>
+<%= cname.ljust(30, ' ') %>IN CNAME   <%= target %>
 <% end %>
 <% end %>
-ftp                      IN CNAME   www
-imap                     IN CNAME   www
-loopback                 IN CNAME   localhost
-pop                      IN CNAME   www
-relay                    IN CNAME   www
-smtp                     IN CNAME   www
+ftp                            IN CNAME   www
+imap                           IN CNAME   www
+loopback                       IN CNAME   localhost
+pop                            IN CNAME   www
+relay                          IN CNAME   www
+smtp                           IN CNAME   www
 
 ; mx
 <% if config['mx'].nil? %>
 @                        IN MX 10   mail
 <% else %>
 <% config['mx'].each do |target| %>
-<%= '@'.ljust(25, ' ') %>IN MX 10   <%= target %>
+<%= '@'.ljust(30, ' ') %> IN MX 10   <%= target %>
 <% end %>
 <% end %>
 
 ; TXT
 <% unless config['txt'].nil? %>
 <% config['txt'].each do |data| %>
-<%= data['key'].ljust(25, ' ') %>IN TXT     <%= data['value'] %>
+<%= data['key'].ljust(30, ' ') %> IN TXT     <%= data['value'] %>
 <% end %>
 <% end %>
