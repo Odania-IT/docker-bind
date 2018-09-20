@@ -25,7 +25,7 @@ RUN chown -R root:named /etc && chmod g+rwx /etc
 RUN chown -R named:named /etc/bind
 ENV COPY_REFERENCE_FILE_LOG /srv/data/copy_reference_file.log
 VOLUME '/srv/data' '/srv/bind'
-EXPOSE 53/udp 53/tcp
+EXPOSE 5353/udp 5353/tcp
 CMD '/run.sh'
 USER named
 
