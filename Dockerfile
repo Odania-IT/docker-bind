@@ -25,4 +25,4 @@ ENV COPY_REFERENCE_FILE_LOG /srv/data/copy_reference_file.log
 VOLUME '/srv/data' '/srv/bind'
 EXPOSE 53/udp 53/tcp
 CMD '/run.sh'
-#USER named
+USER named

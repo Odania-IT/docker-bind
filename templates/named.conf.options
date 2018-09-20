@@ -25,7 +25,8 @@ options {
 	dnssec-validation auto;
 
 	auth-nxdomain no;    # conform to RFC1035
-	listen-on-v6 { any; };
+        listen-on port 5353 { any; };
+	listen-on-v6 port 5353 { any; };
 
 	# Add response rate limiting
 	# https://kb.isc.org/article/AA-00994/0/Using-the-Response-Rate-Limiting-Feature-in-BIND-9.10.html
