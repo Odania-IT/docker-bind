@@ -3,7 +3,7 @@ GEM
   specs:
     ast (2.2.0)
     coderay (1.1.1)
-    diff-lcs (1.2.5)
+    diff-lcs (1.5.1)
     erubis (2.7.0)
     ffi (1.9.10)
     formatador (0.2.5)
@@ -35,19 +35,19 @@ GEM
     rb-fsevent (0.9.7)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
-    rspec (3.4.0)
-      rspec-core (~> 3.4.0)
-      rspec-expectations (~> 3.4.0)
-      rspec-mocks (~> 3.4.0)
-    rspec-core (3.4.3)
-      rspec-support (~> 3.4.0)
-    rspec-expectations (3.4.0)
+    rspec (3.13.0)
+      rspec-core (~> 3.13.0)
+      rspec-expectations (~> 3.13.0)
+      rspec-mocks (~> 3.13.0)
+    rspec-core (3.13.0)
+      rspec-support (~> 3.13.0)
+    rspec-expectations (3.13.0)
       diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.4.0)
-    rspec-mocks (3.4.1)
+      rspec-support (~> 3.13.0)
+    rspec-mocks (3.13.0)
       diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.4.0)
-    rspec-support (3.4.1)
+      rspec-support (~> 3.13.0)
+    rspec-support (3.13.0)
     ruby-lint (2.1.0)
       parser (~> 2.2)
       slop (~> 3.4, >= 3.4.7)
@@ -64,3 +64,6 @@ DEPENDENCIES
   rake
   rspec
   ruby-lint
+
+BUNDLED WITH
+   2.5.5
